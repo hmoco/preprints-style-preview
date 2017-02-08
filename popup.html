@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <title>OSF Preprints Preview</title>
+        <style>
+            body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+            }
+            #status {
+            white-space: pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 400px;
+            }
+        </style>
+        <script src="jquery-3.1.1.min.js"></script>
+        <script src="popup.js"></script>
+    </head>
+    <body>
+        <div id="status"></div>
+
+        Header Color: <input class='form-input' type="text" name="header"><br>
+        Text Color: <input class='form-input' type="text" name="text"><br>
+        Navbar Color: <input class='form-input' type="text" name="navbar"><br>
+        <button id="submit-button">Submit</button>
+
+        <img id="image-result" hidden>
+    </body>
+</html>
