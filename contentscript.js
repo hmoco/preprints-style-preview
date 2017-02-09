@@ -9,7 +9,7 @@ const map_ = {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         for (var property in request) {
-            document.body.style.setProperty(map_[property], request[property])
+            document.body.style.setProperty(map_[property], request[property], 'important');
         }
     }
 )
