@@ -10,6 +10,7 @@
                 width: 450px;
                 height: auto;
                 margin: 20px;
+                margin-top: 5px;
                 font-family: "Open Sans";
                 font-size: 150%;
                 color: white;
@@ -17,7 +18,7 @@
             }
             .header-banner {
                 width: 100%;
-                margin: 5px;
+                margin-top: 23px;
             }
         </style>
         <script src="jquery-3.1.1.min.js"></script>
@@ -26,49 +27,60 @@
     </head>
     <body>
         <div class='container'>
-            <img src='images/preprints-logo.png' class='header-banner'>
-            <div><h2> Style Preview </h2></div>
-            <hr>
             <div class='row'>
-                <div class='col-xs-8'>
-                    <div class='row'>
-                        <div class='col-xs-6'>
-                            Header Color:
-                        </div>
-                        <div class='col-xs-6'>
-                            <input class='form-input form-control' type="text" name="header">
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-xs-6'>
-                            Text Color:
-                        </div>
-                        <div class='col-xs-6'>
-                            <input class='form-input form-control' type="text" name="text">
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-xs-6'>
-                            Navbar Color:
-                        </div>
-                        <div class='col-xs-6'>
-                            <input class='form-input form-control' type="text" name="navbar">
-                        </div>
-                    </div>
+                <div class='col-xs-6'>
+                    <img src='images/preprints-logo.png' class='header-banner'>
                 </div>
-                <div class='col-xs-4'>
-                    <div id='colorpicker'></div>
+                <div class='col-xs-6'>
+                    <div><h3> Style Preview </h3></div>
                 </div>
-            </div>
-            <br>
-            <div>
-                Banner Image: <input id='banner' type='file'><br>
-            </div>
-            <div>
-                Logo Image: <input id='logo' type='file'>
             </div>
             <hr>
-            <div id="status"></div>
+            <div id='picker'>
+                <div class='row'>
+                    <div class='col-xs-8'>
+                        <div class='row'>
+                            <div class='col-xs-6'>
+                                Header Color:
+                            </div>
+                            <div class='col-xs-6'>
+                                <input class='form-input form-control' type="text" name="header">
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-xs-6'>
+                                Text Color:
+                            </div>
+                            <div class='col-xs-6'>
+                                <input class='form-input form-control' type="text" name="text">
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-xs-6'>
+                                Navbar Color:
+                            </div>
+                            <div class='col-xs-6'>
+                                <input class='form-input form-control' type="text" name="navbar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-xs-4'>
+                        <div id='colorpicker'></div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    Banner Image: <input id='banner' type='file'><br>
+                </div>
+                <div>
+                    Logo Image: <input id='logo' type='file'>
+                </div>
+                <hr>
+                <div id="status"></div>
+            </div>
+            <div id='warning' class='hidden'>
+                <i><h3>Style Preview can only be used on the preprint pages of OSF and its providers.</h3></i>
+            </div>
         </div>
     </body>
 </html>

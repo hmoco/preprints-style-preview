@@ -14,42 +14,45 @@ function updateTheme(attr, value) {
             theme[$(elem).attr('name')] = val;
         }
     })
-    console.log(theme)
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
         chrome.tabs.sendMessage(tabs[0].id, theme, function() {
             renderStatus('Updated!');
+            chrome.tabs.insertCSS(tabs[0].id, {file: 'brand.css'})
+        });
+    });
+}
+
+function loadImage(id) {
+    $(`#${id}`).change(() => {
+        let data = new FormData();
+        data.append('file', $(`#${id}`)[0].files[0]);
+        fetch('https://file.io/?expires=1', {
+            body: data,
+            method: 'POST',
+        }).then(resp => {
+            return resp.json();
+        }).then(json => {
+            updateTheme(id, `url(${json.link})`);
         });
     });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    loadImage('banner');
+    loadImage('logo');
+
+    chrome.tabs.query({currentWindow: true, active: true}, tabs => {
+        let url = tabs[0].url;
+        if (url.indexOf('preprints') < 0) {
+            $('#warning').removeClass('hidden');
+            $('#picker').addClass('hidden');
+        }
+    });
+
     $('.form-input').colorpicker({
         container: $('#colorpicker')
     });
-    $('#banner').change(() => {
-        let data = new FormData();
-        data.append('file', $('#banner')[0].files[0]);
-        fetch('https://file.io/?expires=1', {
-            body: data,
-            method: 'POST',
-        }).then(resp => {
-            return resp.json();
-        }).then(json => {
-            updateTheme('banner', json.link);
-        });
-    });
-    $('#logo').change(() => {
-        let data = new FormData();
-        data.append('file', $('#logo')[0].files[0]);
-        fetch('https://file.io/?expires=1', {
-            body: data,
-            method: 'POST',
-        }).then(resp => {
-            return resp.json();
-        }).then(json => {
-            updateTheme('logo', json.link);
-        });
-    });
+
     $('input').change(function() {
         updateTheme();
     });
