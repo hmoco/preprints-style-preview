@@ -1,4 +1,12 @@
 const theme = {};
+const map_ = {
+    header: 'theme-color1',
+    text: 'theme-color2',
+    navbar: 'theme-color3',
+    logo: 'theme-logo',
+    banner: 'theme-banner'
+}
+const cssCached = [];
 
 function renderStatus(statusText) {
     document.getElementById('status').textContent = statusText;
@@ -14,10 +22,21 @@ function updateTheme(attr, value) {
             theme[$(elem).attr('name')] = val;
         }
     })
+    let properties = {};
+    let cssNeeded = [];
+    for (var key in theme) {
+        properties[`__${map_[key]}`] = theme[key];
+        cssNeeded.push(`${map_[key]}.css`);
+    }
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
-        chrome.tabs.sendMessage(tabs[0].id, theme, function() {
+        chrome.tabs.sendMessage(tabs[0].id, properties, function() {
             renderStatus('Updated!');
-            chrome.tabs.insertCSS(tabs[0].id, {file: 'brand.css'})
+            for (var cssFile of cssNeeded) {
+                if (cssCached.indexOf(cssFile) === -1) {
+                    chrome.tabs.insertCSS(tabs[0].id, {file: `css/${cssFile}`});
+                    cssCached.push(cssFile);
+                }
+            }
         });
     });
 }
