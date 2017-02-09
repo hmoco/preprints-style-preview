@@ -2,29 +2,63 @@
 <html>
     <head>
         <title>OSF Preprints Preview</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style>
             body {
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
+                width: 600px;
+                height: auto;
+                margin: 20px;
+                font-family: "Open Sans";
+                font-size: 150%;
+                color: white;
+                background-image: url(images/background.png);
             }
-            #status {
-            white-space: pre;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 400px;
+            .header-banner {
+                width: 100%;
+                margin: 15px;
+                margin-top: 0px;
             }
         </style>
         <script src="jquery-3.1.1.min.js"></script>
         <script src="popup.js"></script>
     </head>
     <body>
-        <div id="status"></div>
-
-        Header Color: <input class='form-input' type="text" name="header"><br>
-        Text Color: <input class='form-input' type="text" name="text"><br>
-        Navbar Color: <input class='form-input' type="text" name="navbar"><br>
-        <button id="submit-button">Submit</button>
-
-        <img id="image-result" hidden>
+        <div class='container'>
+            <img src='images/preprints-logo.png' class='header-banner'>
+            <div class='row'>
+                <div class='col-xs-6'>
+                    <div class='row'>
+                        <div class='col-xs-6'>
+                            Header Color:
+                        </div>
+                        <div class='col-xs-6'>
+                            <input class='form-input form-control' type="text" name="header">
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-xs-6'>
+                            Text Color:
+                        </div>
+                        <div class='col-xs-6'>
+                            <input class='form-input form-control' type="text" name="text">
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-xs-6'>
+                            Navbar Color:
+                        </div>
+                        <div class='col-xs-6'>
+                            <input class='form-input form-control' type="text" name="navbar">
+                        </div>
+                    </div>
+                </div>
+                <div class='col-xs-6'>
+                    Banner Image: <input id='banner' type='file'><br>
+                    Logo Image: <input id='logo' type='file'>
+                </div>
+            <hr>
+            <div id="status"></div>
+        </div>
     </body>
 </html>

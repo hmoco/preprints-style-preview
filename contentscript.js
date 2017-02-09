@@ -15,5 +15,11 @@ chrome.runtime.onMessage.addListener(
             $('.subject-item > .btn-primary').css('background-color', request.navbar);
             $('.preprint-navbar').css('background-color', request.navbar);
         }
+        if (request.logo) {
+            $('.navbar-image').css('background-image', `url(${request.logo})`);
+        }
+        if (request.banner) {
+            $('.preprint-brand').css('background-image', `url(${request.banner})`);
+        }
     }
 )
