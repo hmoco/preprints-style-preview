@@ -4,9 +4,10 @@
         <title>OSF Preprints Preview</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href='bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' rel='stylesheet' type='text/css'>
         <style>
             body {
-                width: 600px;
+                width: 450px;
                 height: auto;
                 margin: 20px;
                 font-family: "Open Sans";
@@ -16,18 +17,20 @@
             }
             .header-banner {
                 width: 100%;
-                margin: 15px;
-                margin-top: 0px;
+                margin: 5px;
             }
         </style>
         <script src="jquery-3.1.1.min.js"></script>
+        <script src='bootstrap-colorpicker/js/bootstrap-colorpicker.min.js'></script>
         <script src="popup.js"></script>
     </head>
     <body>
         <div class='container'>
             <img src='images/preprints-logo.png' class='header-banner'>
+            <div><h2> Style Preview </h2></div>
+            <hr>
             <div class='row'>
-                <div class='col-xs-6'>
+                <div class='col-xs-8'>
                     <div class='row'>
                         <div class='col-xs-6'>
                             Header Color:
@@ -53,10 +56,17 @@
                         </div>
                     </div>
                 </div>
-                <div class='col-xs-6'>
-                    Banner Image: <input id='banner' type='file'><br>
-                    Logo Image: <input id='logo' type='file'>
+                <div class='col-xs-4'>
+                    <div id='colorpicker'></div>
                 </div>
+            </div>
+            <br>
+            <div>
+                Banner Image: <input id='banner' type='file'><br>
+            </div>
+            <div>
+                Logo Image: <input id='logo' type='file'>
+            </div>
             <hr>
             <div id="status"></div>
         </div>

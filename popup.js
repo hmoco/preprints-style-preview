@@ -23,6 +23,9 @@ function updateTheme(attr, value) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    $('.form-input').colorpicker({
+        container: $('#colorpicker')
+    });
     $('#banner').change(() => {
         let data = new FormData();
         data.append('file', $('#banner')[0].files[0]);
