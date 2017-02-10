@@ -25,9 +25,11 @@ function updateTheme(attr, value) {
     let properties = {};
     let cssNeeded = [];
     for (var key in theme) {
-        properties[`__${map_[key]}`] = theme[key];
+        properties[`--${map_[key]}`] = theme[key];
         cssNeeded.push(`${map_[key]}.css`);
     }
+    console.log(cssNeeded);
+    console.log(properties);
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
         chrome.tabs.sendMessage(tabs[0].id, properties, function() {
             renderStatus('Updated!');

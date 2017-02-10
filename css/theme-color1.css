@@ -1,0 +1,34 @@
+.preprint-header {
+    background-color: var(--theme-color1) !important;
+}
+
+#preprint-form-subjects .subject:hover,
+#preprint-form-subjects .subject:hover > .fa,
+#preprint-form-subjects ul li:hover {
+    background-color: var(--theme-color1) !important;
+}
+
+#preprint-form-subjects .subject:hover > b:after {
+    border-left-color: var(--theme-color1) !important;
+}
+
+.dropdown-menu > li > a:hover {
+    color: var(--theme-color1) !important;
+}
+
+.subject-item > .btn-primary {
+    border-color: var(--theme-color1) !important;
+}
+
+.subject-item > .btn-primary:hover {
+    background-color: var(--theme-color1) !important;
+}
+
+.preprint-403,
+.preprint-404,
+.preprint-advisory,
+.preprint-submit-header,
+.preprint-search-header,
+.provider-filter {
+    background: var(--theme-color1) !important;
+}

@@ -1,0 +1,34 @@
+.preprint-navbar,
+.preprint-navbar .nav > li > a.active {
+    background-color: var(--theme-color3) !important;
+}
+
+.preprint-navbar .navbar-brand:hover,
+.preprint-navbar .nav > li > a:hover {
+    background-color: var(--theme-color3) !important;
+
+}
+
+#preprint-form-subjects .subject,
+#preprint-form-subjects .subject > .fa,
+#preprint-form-subjects ul li.selected,
+#preprint-form-subjects ul li:active {
+    background-color: var(--theme-color3) !important;
+}
+
+#preprint-form-subjects .subject b:after {
+    border-left-color: var(--theme-color3) !important;
+}
+
+.subject-item > .btn-primary {
+    background-color: var(--theme-color3) !important;
+}
+
+.subject-item > .btn-primary:hover {
+    border-color: var(--theme-color3) !important;
+}
+
+.subject-filter,
+.subject-filter .fa {
+    background-color: var(--theme-color3) !important;
+}
