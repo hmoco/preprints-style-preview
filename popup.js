@@ -3,6 +3,8 @@ const map_ = {
     header: 'theme-color1',
     text: 'theme-color2',
     navbar: 'theme-color3',
+    link: 'theme-color4',
+    contrast: 'theme-color5',
     logo: 'theme-logo',
     banner: 'theme-banner'
 }
@@ -28,8 +30,7 @@ function updateTheme(attr, value) {
         properties[`--${map_[key]}`] = theme[key];
         cssNeeded.push(`${map_[key]}.css`);
     }
-    console.log(cssNeeded);
-    console.log(properties);
+
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
         chrome.tabs.sendMessage(tabs[0].id, properties, function() {
             renderStatus('Updated!');
