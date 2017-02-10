@@ -78,4 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
     $('input').change(function() {
         updateTheme();
     });
+
+    $('.more-text-button').on('click', function() {
+        $('.more-text').toggleClass('hidden');
+    });
 })
