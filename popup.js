@@ -66,8 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
         let url = tabs[0].url;
         if (url.indexOf('preprints') < 0) {
-            $('#warning').removeClass('hidden');
-            $('#picker').addClass('hidden');
+            $('.warning').toggleClass('hidden');
         }
     });
 
