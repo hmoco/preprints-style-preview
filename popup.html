@@ -85,7 +85,7 @@
                                 Alt. Text Color:
                             </div>
                             <div class='col-xs-6'>
-                                <input class='form-input form-control' type="text" name="alternate">
+                                <input class='form-input form-control' type="text" name="contrast">
                             </div>
                         </div>
                         <div class='row'>
@@ -110,6 +110,12 @@
                 </div>
                 <hr>
                 <div id="status" class='pull-left'></div>
+                <button id='show-output' class='btn-link'>Toggle Output</button>
+                <div class='hidden output'>
+                    <h4> Copy and Paste JSON </h4>
+                    <pre id='output'></pre>
+                </div>
+
             </div>
             <div class='warning hidden'>
                 <i><h3>Style Preview can only be used on the preprint pages of OSF and its providers.</h3></i>

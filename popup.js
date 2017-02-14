@@ -14,6 +14,17 @@ function renderStatus(statusText) {
     document.getElementById('status').textContent = statusText;
 }
 
+function renderOutput() {
+    let output = {};
+    $('.form-input').each((i, elem) => {
+        let val = $(elem).val();
+        if (val) {
+            output[map_[$(elem).attr('name')]] = val;
+        }
+    })
+    document.getElementById('output').textContent = JSON.stringify(output);
+}
+
 function updateTheme(attr, value) {
     if (attr && value) {
         theme[attr] = value;
@@ -76,9 +87,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     $('input').change(function() {
         updateTheme();
+        renderOutput();
     });
 
     $('.more-text-button').on('click', function() {
         $('.more-text').toggleClass('hidden');
+    });
+
+    $('#show-output').on('click', function() {
+        $('.output').toggleClass('hidden');
+        renderOutput();
     });
 })
