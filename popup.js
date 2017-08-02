@@ -5,8 +5,6 @@ const map_ = {
     navbar: 'theme-color3',
     link: 'theme-color4',
     contrast: 'theme-color5',
-    logo: 'theme-logo',
-    banner: 'theme-banner'
 }
 const cssCached = [];
 
@@ -55,24 +53,7 @@ function updateTheme(attr, value) {
     });
 }
 
-function loadImage(id) {
-    $(`#${id}`).change(() => {
-        let data = new FormData();
-        data.append('file', $(`#${id}`)[0].files[0]);
-        fetch('https://file.io/?expires=1', {
-            body: data,
-            method: 'POST',
-        }).then(resp => {
-            return resp.json();
-        }).then(json => {
-            updateTheme(id, `url(${json.link})`);
-        });
-    });
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    loadImage('banner');
-    loadImage('logo');
 
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
         let url = tabs[0].url;
