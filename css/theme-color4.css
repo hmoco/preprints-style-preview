@@ -9,3 +9,8 @@
 .preprint-navbar .nav > li > a:focus:not(.active):hover {
     background-color: var(--theme-color4) !important;
 }
+
+.preprint-error-page a:not(.btn),
+.preprint-advisory a:not(.btn) {
+    color: var(--theme-color4) !important;
+}
