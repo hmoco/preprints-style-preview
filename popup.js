@@ -5,24 +5,17 @@ const map_ = {
     navbar: 'theme-color3',
     link: 'theme-color4',
     contrast: 'theme-color5',
-    logo: 'theme-logo',
-    banner: 'theme-banner'
 }
 const cssCached = [];
 
+const defaults = {
+    color1: '#337ab7',
+    color2: '#FFF',
+    color3: '#263947',
+};
+
 function renderStatus(statusText) {
     document.getElementById('status').textContent = statusText;
-}
-
-function renderOutput() {
-    let output = {};
-    $('.form-input').each((i, elem) => {
-        let val = $(elem).val();
-        if (val) {
-            output[map_[$(elem).attr('name')]] = val;
-        }
-    })
-    document.getElementById('output').textContent = JSON.stringify(output);
 }
 
 function updateTheme(attr, value) {
@@ -44,7 +37,6 @@ function updateTheme(attr, value) {
 
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
         chrome.tabs.sendMessage(tabs[0].id, properties, function() {
-            renderStatus('Updated!');
             for (var cssFile of cssNeeded) {
                 if (cssCached.indexOf(cssFile) === -1) {
                     chrome.tabs.insertCSS(tabs[0].id, {file: `css/${cssFile}`});
@@ -55,24 +47,40 @@ function updateTheme(attr, value) {
     });
 }
 
-function loadImage(id) {
-    $(`#${id}`).change(() => {
-        let data = new FormData();
-        data.append('file', $(`#${id}`)[0].files[0]);
-        fetch('https://file.io/?expires=1', {
-            body: data,
-            method: 'POST',
-        }).then(resp => {
-            return resp.json();
-        }).then(json => {
-            updateTheme(id, `url(${json.link})`);
-        });
+function prepareCSSDownload(){
+    $.get(window.origin+'/css/full.css').then(data => {
+        var currentCSS = createPreprintCSS(data);
+
+        var blob = new Blob([currentCSS], {type: "text/text"});
+        var url  = URL.createObjectURL(blob);
+
+        document.getElementById("download-full-css").href=url;
     });
 }
 
+function createPreprintCSS(preprintCSS){
+    let properties = {};
+
+    for (let key in theme) {
+        properties[`${map_[key]}`] = theme[key];
+    }
+    for (let color in defaults){
+        if (!Object.keys(properties).includes('theme-' + color)) {
+            properties['theme-'+color] = defaults[color];
+        }
+    }
+
+    properties['theme-color5'] = properties['theme-color5'] ? properties['theme-color5'] : properties['theme-color4'] ? properties['theme-color4'] : properties['theme-color3'];
+    properties['theme-color4'] = properties['theme-color4'] ? properties['theme-color4'] : properties['theme-color2'];
+
+    for (let key in properties) {
+        preprintCSS = preprintCSS.replace(new RegExp(key, 'g'), properties[key]);
+    }
+
+    return preprintCSS;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    loadImage('banner');
-    loadImage('logo');
 
     chrome.tabs.query({currentWindow: true, active: true}, tabs => {
         let url = tabs[0].url;
@@ -87,15 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     $('input').change(function() {
         updateTheme();
-        renderOutput();
+        prepareCSSDownload();
     });
 
     $('.more-text-button').on('click', function() {
         $('.more-text').toggleClass('hidden');
     });
 
-    $('#show-output').on('click', function() {
-        $('.output').toggleClass('hidden');
-        renderOutput();
-    });
-})
+});
+
